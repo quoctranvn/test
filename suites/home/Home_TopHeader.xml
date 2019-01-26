@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite Home">
+    <parameter name="browserName" value="chrome"/>
+    <test name="Home - Header Top Header Section" parallel="classes"  thread-count="2">
+        <classes>
+            <class name="UI.Home.Home_VerifyTopHeaderWhenLogin"/>
+            <class name="UI.Home.Home_VerifyTopHeaderWithoutLogin"/>
+        </classes>
+    </test>
+</suite>

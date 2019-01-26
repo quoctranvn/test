@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite Regression" parallel="false">
+    <suite-files>
+        <suite-file path="Login.xml"/>
+        <suite-file path="Home.xml"/>
+    </suite-files>
+</suite>

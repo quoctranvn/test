@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite Home">
+    <parameter name="browserName" value="chrome"/>
+    <test name="Home - Common Keyword Section">
+        <classes>
+            <class name="UI.Home.Home_VerifyCommonKeyword"/>
+        </classes>
+    </test>
+    <test name="Home - Hyperlink Text Section">
+        <classes>
+            <class name="UI.Home.Home_VerifyHyperlinkText"/>
+        </classes>
+    </test>
+    <test name="Home - Banner And Category Section">
+        <classes>
+            <class name="UI.Home.Home_VerifyBannerAndCategory"/>
+        </classes>
+    </test>
+    <test name="Home - Header And Footer Sections" parallel="classes"  thread-count="2">
+        <classes>
+            <class name="UI.Home.Home_VerifyTopHeaderWhenLogin"/>
+            <class name="UI.Home.Home_VerifyTopHeaderWithoutLogin"/>
+            <class name="UI.Home.Home_VerifyFooter"/>
+        </classes>
+    </test>
+</suite>

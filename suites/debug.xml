@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite Debug">
+    <test name="Home - Banner And Category Section">
+        <parameter name="browserName" value="chrome"/>
+        <classes>
+            <class name="UI.Home.Home_VerifyBannerAndCategory"/>
+        </classes>
+    </test>
+</suite>
