@@ -1,6 +1,7 @@
 package com.qtr.core.config.driver.selenium;
 
 import com.qtr.core.config.driver.selenium.browser.ChromeDriverConfig;
+import com.qtr.core.config.driver.selenium.browser.RemoteDriverConfig;
 import org.apache.commons.collections4.map.LinkedMap;
 import org.openqa.selenium.WebDriver;
 
@@ -21,12 +22,17 @@ public class WebDriverFactory {
     }
 
     public void createWebDriver(String browserName) {
-        switch (browserName.toLowerCase().trim()) {
-            case "chrome":
-                webDriver = new ChromeDriverConfig().createDriver();
-                break;
+        String host = System.getProperty("seleniumHubHost");
+        if (host != null) {
+            webDriver = new RemoteDriverConfig().createDriver();
+        } else {
+            switch (browserName.toLowerCase().trim()) {
+                case "chrome":
+                    webDriver = new ChromeDriverConfig().createDriver();
+                    break;
+            }
+            setDriverStorage(webDriver);
         }
-        setDriverStorage(webDriver);
     }
 
     private void setDriverStorage(WebDriver webDriver) {

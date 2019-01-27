@@ -1,12 +1,13 @@
 package com.qtr.core.config.driver.selenium;
 
-import com.qtr.core.utils.FileHelper;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import static com.qtr.core.utils.FileHelper.getProperties;
 
 public class ConfigDriver {
 
@@ -18,7 +19,7 @@ public class ConfigDriver {
     private int scriptTimeout;
 
     protected ConfigDriver() {
-        Properties prop = FileHelper.getProperties("driver");
+        Properties prop = getProperties("driver");
         this.maximize = Boolean.valueOf(prop.getProperty("maximize"));
         this.width = Integer.valueOf(prop.getProperty("width"));
         this.height = Integer.valueOf(prop.getProperty("height"));

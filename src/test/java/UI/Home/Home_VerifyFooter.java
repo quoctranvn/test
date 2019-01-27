@@ -19,7 +19,7 @@ public class Home_VerifyFooter extends BaseTest {
     }
 
     @Test
-    public void checkFooterWhenLogin() {
+    public void verifyFooterWhenLogin() {
         // Run setup
         this.setup();
 

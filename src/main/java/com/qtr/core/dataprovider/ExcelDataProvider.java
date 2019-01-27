@@ -6,19 +6,22 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ExcelDataProvider {
-    private static final String currentDir = System.getProperty("user.dir");
     private static XSSFWorkbook excelWBook;
     private static XSSFSheet excelWSheet;
     private static XSSFCell cell;
     private static XSSFRow row;
     private static int rowNumber;
     private static int columnNumber;
+    private static final String currentDir = System.getProperty("user.dir");
     private static final String defaultTestDataPath = "\\src\\test\\resources\\";
     private static String testDataExcelPath = currentDir + defaultTestDataPath;
 
@@ -32,7 +35,8 @@ public class ExcelDataProvider {
 
     public static Object[][] getTableArrayByRow(String testDataExcelFileName, String sheetName, int rowNumber) {
         try {
-            FileInputStream ExcelFile = new FileInputStream(testDataExcelPath + testDataExcelFileName);
+            // Open the Excel file
+            InputStream ExcelFile = ExcelDataProvider.class.getClassLoader().getResourceAsStream(testDataExcelFileName);
             excelWBook = new XSSFWorkbook(ExcelFile);
             excelWSheet = excelWBook.getSheet(sheetName);
             int totalCols = excelWSheet.getRow(0).getPhysicalNumberOfCells();
@@ -55,7 +59,7 @@ public class ExcelDataProvider {
     public static void getExcelFileSheet(String testDataExcelFileName, String sheetName) {
         try {
             // Open the Excel file
-            FileInputStream ExcelFile = new FileInputStream(testDataExcelPath + testDataExcelFileName);
+            InputStream ExcelFile = ExcelDataProvider.class.getClassLoader().getResourceAsStream(testDataExcelFileName);
             excelWBook = new XSSFWorkbook(ExcelFile);
             excelWSheet = excelWBook.getSheet(sheetName);
         } catch (IOException e) {
@@ -92,16 +96,18 @@ public class ExcelDataProvider {
             } else {
                 cell.setCellValue(value);
             }
-            FileOutputStream fileOut = new FileOutputStream(testDataExcelPath + testDataExcelFileName);
+            ClassLoader cLoader = ExcelDataProvider.class.getClassLoader();
+            String filePath = new String(Files.readAllBytes(Paths.get(cLoader.getResource(testDataExcelFileName).toURI())));
+            FileOutputStream fileOut = new FileOutputStream(filePath);
             excelWBook.write(fileOut);
             fileOut.flush();
             fileOut.close();
-        } catch (Exception e) {
-            try {
-                throw (e);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 

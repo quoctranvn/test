@@ -19,7 +19,7 @@ public class Home_VerifyTopHeaderWithoutLogin extends BaseTest {
     }
 
     @Test
-    public void checkTopHeaderWhenLogin() {
+    public void verifyTopHeaderWhenLogin() {
         // Run setup
         this.setup();
 
