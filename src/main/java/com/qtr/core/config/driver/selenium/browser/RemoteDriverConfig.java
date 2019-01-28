@@ -11,13 +11,12 @@ import java.net.URL;
 public class RemoteDriverConfig {
 
     private DesiredCapabilities capabilities;
-    private final String host = System.getProperty("seleniumHubHost");
-    private final String browserName = System.getProperty("browser").toLowerCase();
 
-    public WebDriver createDriver() {
+    public WebDriver createDriver(String host) {
         try {
+            String browserName = System.getProperty("browser").toLowerCase();
             initRemoteCapabilities(browserName);
-            URL gridUrl = new URL(this.host);
+            URL gridUrl = new URL("http://" + host + ":4444/wd/hub");
             WebDriver webDriver = new RemoteWebDriver(gridUrl, this.capabilities);
             return webDriver;
         } catch (MalformedURLException e) {
@@ -30,8 +29,8 @@ public class RemoteDriverConfig {
         switch (browserName.toLowerCase().trim()) {
             case "chrome":
                 this.capabilities = DesiredCapabilities.chrome();
-                this.capabilities.setAcceptInsecureCerts(true);
-                this.capabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+//                this.capabilities.setAcceptInsecureCerts(true);
+//                this.capabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
                 break;
         }
     }

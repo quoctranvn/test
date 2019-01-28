@@ -17,7 +17,7 @@
             <class name="UI.Home.Home_VerifyBannerAndCategory"/>
         </classes>
     </test>
-    <test name="Home - Header And Footer Sections" parallel="classes"  thread-count="2">
+    <test name="Home - Header And Footer Sections">
         <classes>
             <class name="UI.Home.Home_VerifyTopHeaderWhenLogin"/>
             <class name="UI.Home.Home_VerifyTopHeaderWithoutLogin"/>

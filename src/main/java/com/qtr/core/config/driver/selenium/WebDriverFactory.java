@@ -22,17 +22,22 @@ public class WebDriverFactory {
     }
 
     public void createWebDriver(String browserName) {
-        String host = System.getProperty("seleniumHubHost");
-        if (host != null) {
-            webDriver = new RemoteDriverConfig().createDriver();
+        String host = "none";
+        try {
+            host = System.getProperty("seleniumHubHost");
+        } catch (NullPointerException e) {
+            System.out.print("\n Running in local mode\n");
+        }
+        if (!host.equals("none")) {
+            webDriver = new RemoteDriverConfig().createDriver(host);
         } else {
             switch (browserName.toLowerCase().trim()) {
                 case "chrome":
                     webDriver = new ChromeDriverConfig().createDriver();
                     break;
             }
-            setDriverStorage(webDriver);
         }
+        setDriverStorage(webDriver);
     }
 
     private void setDriverStorage(WebDriver webDriver) {

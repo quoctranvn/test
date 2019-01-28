@@ -9,6 +9,10 @@ services:
     image: selenium/node-chrome
     depends_on:
       - selenium-hub
+  chrome_node:
+    image: selenium/node-chrome
+    depends_on:
+      - selenium-hub
     environment:
       - HUB_PORT_4444_TCP_ADDR=selenium-hub
       - HUB_PORT_4444_TCP_PORT=4444
@@ -16,8 +20,53 @@ services:
     image: quoctranvn/test1:demo
     container_name: login-page
     depends_on:
-      - chrome
+      - chrome_node
     environment:
-      - MODULE=Home.xml
+      - SUITE_NAME=suites/single/Login.xml
+      - SELENIUM_HUB=selenium-hub
+      - BROWSER=chrome
+  home-page-common-keyword:
+    image: quoctranvn/test1:demo
+    container_name: home-page-common-keyword
+    depends_on:
+      - chrome_node
+    environment:
+      - SUITE_NAME=suites/single/home/Home_CommonKeyword.xml
+      - SELENIUM_HUB=selenium-hub
+      - BROWSER=chrome
+  home-page-banner-category:
+    image: quoctranvn/test1:demo
+    container_name: home-page-banner-category
+    depends_on:
+      - chrome_node
+    environment:
+      - SUITE_NAME=suites/single/home/Home_BannerAndCategory.xml
+      - SELENIUM_HUB=selenium-hub
+      - BROWSER=chrome
+  home-page-hyperlink-text:
+    image: quoctranvn/test1:demo
+    container_name: home-page-hyperlink-text
+    depends_on:
+      - chrome_node
+    environment:
+      - SUITE_NAME=suites/single/home/Home_HyperLinkText.xml
+      - SELENIUM_HUB=selenium-hub
+      - BROWSER=chrome
+  home-page-top-header:
+    image: quoctranvn/test1:demo
+    container_name: home-page-top-header
+    depends_on:
+      - chrome_node
+    environment:
+      - SUITE_NAME=suites/single/home/Home_TopHeader.xml
+      - SELENIUM_HUB=selenium-hub
+      - BROWSER=chrome
+  home-page-footer:
+    image: quoctranvn/test1:demo
+    container_name: home-page-footer
+    depends_on:
+      - chrome_node
+    environment:
+      - SUITE_NAME=suites/single/home/Home_Footer.xml
       - SELENIUM_HUB=selenium-hub
       - BROWSER=chrome
