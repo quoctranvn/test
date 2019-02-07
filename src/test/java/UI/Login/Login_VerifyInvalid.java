@@ -1,7 +1,6 @@
 package UI.Login;
 
 import base.BaseTest;
-import com.qtr.core.dataprovider.ExcelDataProvider;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
@@ -13,7 +12,7 @@ public class Login_VerifyInvalid extends BaseTest {
 
     private void setup() {
         //Setup test data
-        ExcelDataProvider.getExcelFileSheet("TestData.xlsx", "Login");
+        excelDataProvider.getExcelFileSheet("TestData.xlsx", "Login");
 
         //Initiate page classes
         homePage = new HomePage();
@@ -37,8 +36,8 @@ public class Login_VerifyInvalid extends BaseTest {
     @Test(priority = 1)
     public void loginWithInvalidData() {
         //Get data in excel
-        String invalidPhone = ExcelDataProvider.getCellData(1, 0);
-        String invalidPassword = ExcelDataProvider.getCellData(1, 1);
+        String invalidPhone = excelDataProvider.getCellData(1, 0);
+        String invalidPassword = excelDataProvider.getCellData(1, 1);
 
         // Login with invalid data
         loginPage.enterPhonedAndPassword(invalidPhone,invalidPassword);
@@ -49,8 +48,8 @@ public class Login_VerifyInvalid extends BaseTest {
     @Test(priority = 2)
     public void loginWithWrongData() {
         //Get data in excel
-        String wrongPhone = ExcelDataProvider.getCellData(2, 0);
-        String wrongPassword = ExcelDataProvider.getCellData(2, 1);
+        String wrongPhone = excelDataProvider.getCellData(2, 0);
+        String wrongPassword = excelDataProvider.getCellData(2, 1);
 
         // Login with wrong data
         loginPage.enterPhonedAndPassword(wrongPhone, wrongPassword);

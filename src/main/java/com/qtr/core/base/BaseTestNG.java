@@ -1,10 +1,11 @@
 package com.qtr.core.base;
 
 import com.qtr.core.config.driver.selenium.WebDriverFactory;
-import com.qtr.core.listeners.TestNGExecutionListener;
+import com.qtr.core.listeners.TestNGTestListener;
+import com.qtr.core.listeners.TestNGSuiteListener;
 import org.testng.annotations.*;
 
-@Listeners({TestNGExecutionListener.class})
+@Listeners({TestNGTestListener.class, TestNGSuiteListener.class})
 public class BaseTestNG {
 
     @BeforeClass

@@ -10,11 +10,11 @@ public class TestNGSuiteListener implements ISuiteListener {
 
     @Override
     public void onStart(ISuite iSuite) {
-
+        System.out.println("\n------ START TEST SUITE: " + iSuite.getName() + " ------\n");
     }
 
     @Override
     public void onFinish(ISuite iSuite) {
-
+        System.out.println("\n------ END TEST SUITE: " + iSuite.getName() + " ------\n");
     }
 }

@@ -15,25 +15,22 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ExcelDataProvider {
-    private static XSSFWorkbook excelWBook;
-    private static XSSFSheet excelWSheet;
-    private static XSSFCell cell;
-    private static XSSFRow row;
-    private static int rowNumber;
-    private static int columnNumber;
-    private static final String currentDir = System.getProperty("user.dir");
-    private static final String defaultTestDataPath = "\\src\\test\\resources\\";
-    private static String testDataExcelPath = currentDir + defaultTestDataPath;
+    private XSSFWorkbook excelWBook;
+    private XSSFSheet excelWSheet;
+    private XSSFCell cell;
+    private XSSFRow row;
+    private int rowNumber;
+    private int columnNumber;
 
-    public static void setRowNumber(int pRowNumber) { rowNumber = pRowNumber; }
+    public void setRowNumber(int pRowNumber) { rowNumber = pRowNumber; }
 
-    public static int getRowNumber() { return rowNumber; }
+    public int getRowNumber() { return rowNumber; }
 
-    public static void setColumnNumber(int pColumnNumber) { columnNumber = pColumnNumber; }
+    public void setColumnNumber(int pColumnNumber) { columnNumber = pColumnNumber; }
 
-    public static int getColumnNumber() { return columnNumber; }
+    public int getColumnNumber() { return columnNumber; }
 
-    public static Object[][] getTableArrayByRow(String testDataExcelFileName, String sheetName, int rowNumber) {
+    public Object[][] getTableArrayByRow(String testDataExcelFileName, String sheetName, int rowNumber) {
         try {
             // Open the Excel file
             InputStream ExcelFile = ExcelDataProvider.class.getClassLoader().getResourceAsStream(testDataExcelFileName);
@@ -47,7 +44,7 @@ public class ExcelDataProvider {
                 tabArray[ci][cj] = getCellData(rowNumber -1, i);
                 System.out.println(tabArray[ci][cj]);
             }
-            return(tabArray);
+            return tabArray;
         }
         catch (IOException e){
             System.out.println("Could not read the Excel sheet");
@@ -56,7 +53,7 @@ public class ExcelDataProvider {
         return null;
     }
 
-    public static void getExcelFileSheet(String testDataExcelFileName, String sheetName) {
+    public void getExcelFileSheet(String testDataExcelFileName, String sheetName) {
         try {
             // Open the Excel file
             InputStream ExcelFile = ExcelDataProvider.class.getClassLoader().getResourceAsStream(testDataExcelFileName);
@@ -67,7 +64,7 @@ public class ExcelDataProvider {
         }
     }
 
-    public static String getCellData(int RowNum, int ColNum) {
+    public String getCellData(int RowNum, int ColNum) {
         try {
             cell = excelWSheet.getRow(RowNum).getCell(ColNum);
             DataFormatter formatter = new DataFormatter();
@@ -77,7 +74,7 @@ public class ExcelDataProvider {
         }
     }
 
-    public static XSSFRow getRowData(int RowNum) {
+    public XSSFRow getRowData(int RowNum) {
         try {
             row = excelWSheet.getRow(RowNum);
             return row;
@@ -86,7 +83,7 @@ public class ExcelDataProvider {
         }
     }
 
-    public static void setCellData(String testDataExcelFileName, int RowNum, int ColNum, String value) {
+    public void setCellData(String testDataExcelFileName, int RowNum, int ColNum, String value) {
         try {
             row = excelWSheet.getRow(RowNum);
             cell = row.getCell(ColNum);

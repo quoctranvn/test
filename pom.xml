@@ -21,6 +21,7 @@
         <log4j.version>1.2.17</log4j.version>
         <testng.version>6.14.3</testng.version>
         <poi.version>3.17</poi.version>
+        <dockerfile.version>1.4.10</dockerfile.version>
     </properties>
 
     <dependencies>
@@ -113,24 +114,24 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${mavensurefire.version}</version>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>dockerfile-maven-plugin</artifactId>-->
-                <!--<version>1.3.5</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>default</id>-->
-                        <!--<goals>-->
-                            <!--<goal>build</goal>-->
-                            <!--<goal>push</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<repository>quoctranvn/test1</repository>-->
-                    <!--<tag>demo</tag>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile.version}</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>quoctranvn/test1</repository>
+                    <tag>demo</tag>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

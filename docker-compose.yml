@@ -2,29 +2,62 @@ version: "3"
 services:
   selenium-hub:
     image: selenium/hub
+    volumes:
+      - /dev/shm:/dev/shm
     container_name: selenium-hub
     ports:
-      - "4444:4444"
-  chrome:
-    image: selenium/node-chrome
-    depends_on:
-      - selenium-hub
+    - "4444:4444"
   chrome_node:
-    image: selenium/node-chrome
+    image: selenium/standardalone-chrome
     depends_on:
       - selenium-hub
+    volumes:
+      - /dev/shm:/dev/shm
     environment:
-      - HUB_PORT_4444_TCP_ADDR=selenium-hub
-      - HUB_PORT_4444_TCP_PORT=4444
-  login-page:
-    image: quoctranvn/test1:demo
-    container_name: login-page
-    depends_on:
-      - chrome_node
-    environment:
-      - SUITE_NAME=suites/single/Login.xml
-      - SELENIUM_HUB=selenium-hub
-      - BROWSER=chrome
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+#  chrome_node1:
+#    image: selenium/node-chrome
+#    hostname: chrome1
+#    ports:
+#    - "5908:5900"
+#    volumes:
+#    - /dev/shm:/dev/shm
+#    environment:
+#      - HUB_HOST=selenium-hub
+#      - HUB_PORT=4444
+#  chrome_node2:
+#    image: selenium/node-chrome
+#    hostname: chrome2
+#    ports:
+#    - "5909:5900"
+#    volumes:
+#    - /dev/shm:/dev/shm
+#    environment:
+#    - HUB_HOST=selenium-hub
+#    - HUB_PORT=4444
+#  home-page-banner-category:
+#    image: quoctranvn/test1:demo
+#    container_name: home-page-banner-category
+#    depends_on:
+#    - chrome_node
+#    environment:
+#    - SUITE_NAME=suites/single/home/Home_BannerAndCategory.xml
+#    - SELENIUM_HUB=selenium-hub
+#    - BROWSER=chrome
+#    volumes:
+#    - /dev/shm:/dev/shm
+#  home-page-hyperlink-text:
+#    image: quoctranvn/test1:demo
+#    container_name: home-page-hyperlink-text
+#    depends_on:
+#    - chrome_node
+#    environment:
+#    - SUITE_NAME=suites/single/home/Home_HyperLinkText.xml
+#    - SELENIUM_HUB=selenium-hub
+#    - BROWSER=chrome
+#    volumes:
+#    - /dev/shm:/dev/shm
   home-page-common-keyword:
     image: quoctranvn/test1:demo
     container_name: home-page-common-keyword
@@ -34,39 +67,49 @@ services:
       - SUITE_NAME=suites/single/home/Home_CommonKeyword.xml
       - SELENIUM_HUB=selenium-hub
       - BROWSER=chrome
-  home-page-banner-category:
-    image: quoctranvn/test1:demo
-    container_name: home-page-banner-category
-    depends_on:
-      - chrome_node
-    environment:
-      - SUITE_NAME=suites/single/home/Home_BannerAndCategory.xml
-      - SELENIUM_HUB=selenium-hub
-      - BROWSER=chrome
-  home-page-hyperlink-text:
-    image: quoctranvn/test1:demo
-    container_name: home-page-hyperlink-text
-    depends_on:
-      - chrome_node
-    environment:
-      - SUITE_NAME=suites/single/home/Home_HyperLinkText.xml
-      - SELENIUM_HUB=selenium-hub
-      - BROWSER=chrome
-  home-page-top-header:
-    image: quoctranvn/test1:demo
-    container_name: home-page-top-header
-    depends_on:
-      - chrome_node
-    environment:
-      - SUITE_NAME=suites/single/home/Home_TopHeader.xml
-      - SELENIUM_HUB=selenium-hub
-      - BROWSER=chrome
-  home-page-footer:
-    image: quoctranvn/test1:demo
-    container_name: home-page-footer
-    depends_on:
-      - chrome_node
-    environment:
-      - SUITE_NAME=suites/single/home/Home_Footer.xml
-      - SELENIUM_HUB=selenium-hub
-      - BROWSER=chrome
+    volumes:
+      - /dev/shm:/dev/shm
+#  home-page-top-header:
+#    image: quoctranvn/test1:demo
+#    container_name: home-page-top-header
+#    depends_on:
+#      - chrome_node
+#    environment:
+#      - SUITE_NAME=suites/single/home/Home_TopHeader.xml
+#      - SELENIUM_HUB=selenium-hub
+#      - BROWSER=chrome
+#    volumes:
+#      - /dev/shm:/dev/shm
+#  home-page-footer:
+#    image: quoctranvn/test1:demo
+#    container_name: home-page-footer
+#    depends_on:
+#      - chrome_node
+#    environment:
+#      - SUITE_NAME=suites/single/home/Home_Footer.xml
+#      - SELENIUM_HUB=selenium-hub
+#      - BROWSER=chrome
+#    volumes:
+#      - /dev/shm:/dev/shm
+#  login-page:
+#    image: quoctranvn/test1:demo
+#    container_name: login-page
+#    depends_on:
+#      - chrome_node
+#    environment:
+#      - SUITE_NAME=suites/single/Login.xml
+#      - SELENIUM_HUB=selenium-hub
+#      - BROWSER=chrome
+#    volumes:
+#      - /dev/shm:/dev/shm
+#  home-page:
+#    image: quoctranvn/test1:demo
+#    container_name: home-page
+#    depends_on:
+#      - chrome_node
+#    environment:
+#      - SUITE_NAME=suites/single/Home.xml
+#      - SELENIUM_HUB=selenium-hub
+#      - BROWSER=chrome
+#    volumes:
+#      - /dev/shm:/dev/shm

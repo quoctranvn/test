@@ -22,12 +22,12 @@ public class WebDriverFactory {
     }
 
     public void createWebDriver(String browserName) {
-        String host = "none";
-        try {
-            host = System.getProperty("seleniumHubHost");
-        } catch (NullPointerException e) {
-            System.out.print("\n Running in local mode\n");
-        }
+        String host = System.getProperty("seleniumHubHost");
+        String browserInput = System.getProperty("browser");
+        if (host == null)
+            host = "none";
+        if (browserInput != null)
+            browserName = browserInput; // Select browser input from cmd
         if (!host.equals("none")) {
             webDriver = new RemoteDriverConfig().createDriver(host);
         } else {
@@ -57,7 +57,7 @@ public class WebDriverFactory {
     }
 
     public void disposeWebDriver() {
-        System.out.print("\nDispose web-driver!\n");
+        System.out.print("\nClose current web-driver!\n");
         if (driverStorage.containsKey(Thread.currentThread().getId())) {
             driverStorage.get(Thread.currentThread().getId()).quit();
         }
@@ -65,6 +65,7 @@ public class WebDriverFactory {
     }
 
     public void disposeAllDriver() {
+        System.out.print("\nClose all web-driver!\n");
         for (Map.Entry<Long, WebDriver> driver : driverStorage.entrySet()) {
             WebDriver value = driver.getValue();
             value.quit();

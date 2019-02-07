@@ -1,7 +1,6 @@
 package UI.Home;
 
 import base.BaseTest;
-import com.qtr.core.dataprovider.ExcelDataProvider;
 import component.TopHeader;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -14,11 +13,11 @@ public class Home_VerifyTopHeaderWhenLogin extends BaseTest {
 
     private void setup() {
         //Setup test data
-        ExcelDataProvider.getExcelFileSheet("TestData.xlsx", "Login");
+        excelDataProvider.getExcelFileSheet("TestData.xlsx", "Login");
 
         //Get data in excel
-        String validPhone = ExcelDataProvider.getCellData(3, 0);
-        String validPassword = ExcelDataProvider.getCellData(3, 1);
+        String validPhone = excelDataProvider.getCellData(3, 0);
+        String validPassword = excelDataProvider.getCellData(3, 1);
 
         //Initiate page classes
         homePage = new HomePage();

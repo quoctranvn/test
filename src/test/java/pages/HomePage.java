@@ -3,6 +3,7 @@ package pages;
 import com.qtr.core.base.BasePage;
 import com.qtr.core.config.driver.selenium.WebDriverFactory;
 import component.MainHeader;
+import component.Popup;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -45,7 +46,11 @@ public class HomePage extends BasePage {
         this.openURL(homePageURL);
     }
 
-    public void clickLoginNow() { moveAndClick(btn_LoginNow); }
+    public void clickLoginNow() {
+        new Popup().closePopup();
+        moveAndClickJS(btn_LoginNow);
+        new Popup().closePopup();
+    }
 
     public void verifyLoginNowDisplayed() {verifyElementVisible(btn_LoginNow, maxWaitTime);}
 
