@@ -30,7 +30,7 @@ public class ExcelDataProvider {
 
     public int getColumnNumber() { return columnNumber; }
 
-    public Object[][] getTableArrayByRow(String testDataExcelFileName, String sheetName, int rowNumber) {
+    public Object[][] getTableArrayByRow(String testDataExcelFileName, String sheetName, int rowIndex) {
         try {
             // Open the Excel file
             InputStream ExcelFile = ExcelDataProvider.class.getClassLoader().getResourceAsStream(testDataExcelFileName);
@@ -41,8 +41,33 @@ public class ExcelDataProvider {
             int ci = 0;
             int cj = 0;
             for (int i = 0; i < totalCols; i++, cj++) {
-                tabArray[ci][cj] = getCellData(rowNumber -1, i);
-                System.out.println(tabArray[ci][cj]);
+                tabArray[ci][cj] = getCellData(rowIndex -1, i);
+            }
+            return tabArray;
+        }
+        catch (IOException e){
+            System.out.println("Could not read the Excel sheet");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Object[][] getTableArray(String testDataExcelFileName, String sheetName, int startRowIndex) {
+        try {
+            // Open the Excel file
+            InputStream ExcelFile = ExcelDataProvider.class.getClassLoader().getResourceAsStream(testDataExcelFileName);
+            excelWBook = new XSSFWorkbook(ExcelFile);
+            excelWSheet = excelWBook.getSheet(sheetName);
+            int totalCols = excelWSheet.getRow(0).getPhysicalNumberOfCells();
+            int totalRows = excelWSheet.getLastRowNum() + 1;
+            String[][] tabArray = new String[totalRows][totalCols];
+            int ci = 0;
+            int cj = 0;
+            for (int i = startRowIndex - 1; i < totalRows; i++, ci++) {
+                cj=0;
+                for (int j = 0; j < totalCols; j++, cj++){
+                    tabArray[ci][cj] = getCellData(i, j);
+                }
             }
             return tabArray;
         }

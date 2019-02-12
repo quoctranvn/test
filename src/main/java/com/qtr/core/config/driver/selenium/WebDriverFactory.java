@@ -57,7 +57,7 @@ public class WebDriverFactory {
     }
 
     public void disposeWebDriver() {
-        System.out.print("\nClose current web-driver!\n");
+        System.out.print("\nClose current web-driver\n");
         if (driverStorage.containsKey(Thread.currentThread().getId())) {
             driverStorage.get(Thread.currentThread().getId()).quit();
         }
@@ -65,7 +65,7 @@ public class WebDriverFactory {
     }
 
     public void disposeAllDriver() {
-        System.out.print("\nClose all web-driver!\n");
+        System.out.print("\nClose all web-driver\n");
         for (Map.Entry<Long, WebDriver> driver : driverStorage.entrySet()) {
             WebDriver value = driver.getValue();
             value.quit();

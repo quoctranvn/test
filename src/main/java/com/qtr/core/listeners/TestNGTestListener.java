@@ -1,42 +1,46 @@
 package com.qtr.core.listeners;
 
+import com.qtr.core.config.logger.LoggerFactory;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestNGTestListener implements ITestListener {
 
+    Logger log = LoggerFactory.instance().createClassLogger(getClass());
+
     @Override
     public void onTestStart(ITestResult iTestResult) { }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println("\n------ TEST IS PASSED: " + iTestResult.getName() + " ------\n");
+        log.info("\n------ TEST IS PASSED: " + iTestResult.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("\n------ TEST IS FAILED: " + iTestResult.getName() + " ------\n");
+        log.fatal("\n------ TEST IS FAILED: " + iTestResult.getName());
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        System.out.println("\n------ TEST IS SKIPPED: " + iTestResult.getName() + " ------\n");
+        log.warn("\n------ TEST IS SKIPPED: " + iTestResult.getName());
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-        System.out.println("\n------ TEST IS SKIPPED WITH SUCCESS PERCENTAGE: " + iTestResult.getName() + " ------\n");
+        log.warn("\n------ TEST IS SKIPPED WITH SUCCESS PERCENTAGE: " + iTestResult.getName());
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        System.out.println("\n------ START TEST: " + iTestContext.getName() + " ------\n");
+        log.info("\n------ START TEST: " + iTestContext.getName());
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-        System.out.println("\n------ FINISH TEST: " + iTestContext.getName() + " ------\n");
+        log.info("\n------ FINISH TEST: " + iTestContext.getName());
     }
 
 }

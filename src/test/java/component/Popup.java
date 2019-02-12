@@ -22,7 +22,7 @@ public class Popup extends BasePage {
     private WebElement img_ClosePopup;
 
     public void closePopup() {
-        if(waitForElementVisible(img_ClosePopup, maxWaitTime)) {
+        if(waitForElementVisible(img_ClosePopup,  minWaitTime)) {
             img_ClosePopup.click();
             waitForPageLoad(minWaitTime);
         }

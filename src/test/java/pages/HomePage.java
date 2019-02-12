@@ -49,7 +49,7 @@ public class HomePage extends BasePage {
     public void clickLoginNow() {
         new Popup().closePopup();
         moveAndClickJS(btn_LoginNow);
-        new Popup().closePopup();
+//        new Popup().closePopup();
     }
 
     public void verifyLoginNowDisplayed() {verifyElementVisible(btn_LoginNow, maxWaitTime);}

@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Test Suite Debug">
-    <test name="Home - Banner And Category Section">
+<suite name="TS_Debug">
+    <test name="Login">
         <parameter name="browserName" value="chrome"/>
         <classes>
-            <class name="UI.Home.Home_VerifyBannerAndCategory"/>
+            <class name="UI.Login.Login_VerifyInvalidWithDataProvider"/>
         </classes>
     </test>
 </suite>
