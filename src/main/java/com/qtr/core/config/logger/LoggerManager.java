@@ -10,10 +10,7 @@ import org.apache.logging.log4j.core.appender.rolling.RollingFileManager;
 import org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy;
 import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.LoggerConfig;
-import org.apache.logging.log4j.core.config.builder.api.*;
-import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 
 import java.io.File;
@@ -56,10 +53,10 @@ public class LoggerManager {
         File logFolder = new File(currentPath + File.separator + "logs");
         logFolder.mkdirs();
         logFolderPath = logFolder.getAbsolutePath();
-        fileName =  logFolderPath + File.separator +
-                new SimpleDateFormat("yyyy.MM.dd_hh.mm.ss'.log'").format(new Date());
+        fileName = logFolderPath +  File.separator + "All_Log.log";
     }
 
+    @SuppressWarnings("deprecation")
     private void initLogConfig() {
         layout = PatternLayout.newBuilder().withConfiguration(config)
                 .withPattern(PatternLayout.SIMPLE_CONVERSION_PATTERN).build();
@@ -67,11 +64,12 @@ public class LoggerManager {
                 null, false, config);
         policy = SizeBasedTriggeringPolicy.createPolicy("10MB");
         RollingFileManager fileManager = RollingFileManager.getFileManager(fileName, fileName,
-                false, false, policy, strategy, null, layout, 128,
+                true, false, policy, strategy, null, layout, 128,
                 false, false, null, null, null, config);
         policy.initialize(fileManager);
     }
 
+    @SuppressWarnings("deprecation")
     private void createFileAppender() {
         fileAppender = RollingFileAppender.newBuilder().setConfiguration(config)
                 .withFileName(fileName).withFilePattern(fileName).withAppend(true)
@@ -80,6 +78,7 @@ public class LoggerManager {
                 .withAdvertise(false).withAdvertiseUri("false").build();
     }
 
+    @SuppressWarnings("deprecation")
     private void createConsoleAppender() {
         consoleAppender = ConsoleAppender.newBuilder().setConfiguration(config).setTarget(ConsoleAppender.Target.SYSTEM_OUT)
                 .withName("Console").withLayout(layout).withBufferedIo(true).withImmediateFlush(true).withBufferSize(512).build();

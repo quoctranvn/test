@@ -15,32 +15,32 @@ public class TestNGTestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        log.info("\n------ TEST IS PASSED: " + iTestResult.getName());
+        log.info("\n----- TEST PASSED: " + iTestResult.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        log.fatal("\n------ TEST IS FAILED: " + iTestResult.getName());
+        log.fatal("\n----- TEST FAILED: " + iTestResult.getName());
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        log.warn("\n------ TEST IS SKIPPED: " + iTestResult.getName());
+        log.warn("\n----- TEST SKIPPED: " + iTestResult.getName());
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-        log.warn("\n------ TEST IS SKIPPED WITH SUCCESS PERCENTAGE: " + iTestResult.getName());
+        log.fatal("\n----- TEST FAILED WITH SUCCESS PERCENTAGE: " + iTestResult.getName());
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        log.info("\n------ START TEST: " + iTestContext.getName());
+        log.info("\n----- START TEST: " + iTestContext.getName());
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-        log.info("\n------ FINISH TEST: " + iTestContext.getName());
+        log.info("\n----- FINISH TEST: " + iTestContext.getName());
     }
 
 }

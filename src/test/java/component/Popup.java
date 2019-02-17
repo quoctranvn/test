@@ -24,7 +24,6 @@ public class Popup extends BasePage {
     public void closePopup() {
         if(waitForElementVisible(img_ClosePopup,  minWaitTime)) {
             img_ClosePopup.click();
-            waitForPageLoad(minWaitTime);
         }
     }
 }

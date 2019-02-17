@@ -29,16 +29,16 @@ public class BasePage {
     }
 
     public static void moveAndClick(WebElement webElement) {
+        waitForElementVisible(webElement, minWaitTime);
         Actions action = new Actions(instance().getWebDriver());
         action.moveToElement(webElement).click().build().perform();
-        waitForPageLoad(minWaitTime);
     }
 
     public static void moveAndClickJS(WebElement webElement) {
+        waitForElementPresent(webElement, minWaitTime);
         Actions action = new Actions(instance().getWebDriver());
         action.moveToElement(webElement).perform();
         clickJS(webElement);
-        waitForPageLoad(minWaitTime);
     }
 
     public static void clickByText(String textValue, Boolean isExactly) {
@@ -46,7 +46,8 @@ public class BasePage {
         if(isExactly)
             xpath = "//*[normalize-space(text())=\"" + textValue + "\"]";
         else xpath = "//*[contains(text(),\"" + textValue + "\")]";
-        WebElement e = instance().getWebDriver().findElement(By.xpath(xpath));
+        WebDriverWait wait = new WebDriverWait(instance().getWebDriver(), minWaitTime);
+        WebElement e = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         moveAndClick(e);
     }
 
@@ -75,13 +76,13 @@ public class BasePage {
         wait.until(ExpectedConditions.invisibilityOf(webElement));
     }
 
-    public static void verifyTextPresent(String textValue, Boolean isExactly) {
+    public static void verifyTextPresent(String textValue, Boolean isExactly, int waitTime) {
         String xpath;
         if(isExactly)
             xpath = "//*[normalize-space(text())=\"" + textValue + "\"]";
         else xpath = "//*[contains(text(),\"" + textValue + "\")]";
-        WebElement e = instance().getWebDriver().findElement(By.xpath(xpath));
-        verifyElementPresent(e);
+        WebDriverWait wait = new WebDriverWait(instance().getWebDriver(), waitTime);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
     public static void verifyPageTitleContainsText(String textValue, int waitTime) {
@@ -183,7 +184,6 @@ public class BasePage {
                 break;
             else {
                 instance().getWebDriver().navigate().back();
-                waitForPageLoad(waitTime);
                 newURL = instance().getWebDriver().getCurrentUrl();
                 check = previousURL.equals(newURL);
             }

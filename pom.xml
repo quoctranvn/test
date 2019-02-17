@@ -16,12 +16,13 @@
         <mavenjar.version>3.1.0</mavenjar.version>
 
         <java.version>1.8</java.version>
-        <wdm.version>2.2.4</wdm.version>
+        <wdm.version>3.3.0</wdm.version>
         <selenium.version>3.141.59</selenium.version>
         <logg4j.version>2.11.1</logg4j.version>
         <testng.version>6.14.3</testng.version>
-        <poi.version>3.17</poi.version>
+        <poi.version>4.0.1</poi.version>
         <dockerfile.version>1.4.10</dockerfile.version>
+        <extentreport.version>4.0.9</extentreport.version>
     </properties>
 
     <dependencies>
@@ -29,7 +30,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
             <version>1.7.25</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -46,7 +46,6 @@
             <artifactId>log4j-core</artifactId>
             <version>${logg4j.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -57,11 +56,15 @@
             <artifactId>poi</artifactId>
             <version>${poi.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreport.version}</version>
         </dependency>
 
     </dependencies>

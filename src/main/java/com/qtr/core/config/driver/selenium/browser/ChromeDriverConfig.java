@@ -3,7 +3,6 @@ package com.qtr.core.config.driver.selenium.browser;
 import com.qtr.core.config.driver.selenium.ConfigDriver;
 import com.qtr.core.config.driver.selenium.ExecutableDriver;
 import com.qtr.core.config.driver.selenium.SeleniumDriver;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +14,6 @@ public class ChromeDriverConfig extends ConfigDriver implements SeleniumDriver {
     private ChromeOptions getOptions() {
         if (options == null) {
             options = new ChromeOptions();
-//            options.setPageLoadStrategy(PageLoadStrategy.NONE);
             options.addArguments("--disable-gpu");
         }
         return options;

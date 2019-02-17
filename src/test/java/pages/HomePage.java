@@ -49,7 +49,6 @@ public class HomePage extends BasePage {
     public void clickLoginNow() {
         new Popup().closePopup();
         moveAndClickJS(btn_LoginNow);
-//        new Popup().closePopup();
     }
 
     public void verifyLoginNowDisplayed() {verifyElementVisible(btn_LoginNow, maxWaitTime);}
@@ -70,8 +69,7 @@ public class HomePage extends BasePage {
                 bannerContent = hrefBannerItem.substring(hrefBannerItem.lastIndexOf("/") + 1, hrefBannerItem.lastIndexOf("?")).replace("-", " ").toLowerCase();
             else bannerContent = hrefBannerItem.substring(hrefBannerItem.lastIndexOf("/") + 1).replace("-", " ").toLowerCase();
             // Click on banner item
-            waitForElementPresent(lst_BannerItem.get(i),minWaitTime);
-            clickJS(lst_BannerItem.get(i));
+            moveAndClickJS(lst_BannerItem.get(i));
             // Verify banner item displayed on header list
             new MainHeader().verifyMainHeaderContentWithoutAccent(bannerContent);
             // Back to Home page

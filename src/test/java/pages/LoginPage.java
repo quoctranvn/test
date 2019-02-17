@@ -54,12 +54,12 @@ public class LoginPage extends BasePage {
 
     public void checkInvalidData() {
         String errMsg= "Phone: Số điện thoại không hợp lệ. Password: Mật khẩu phải có ít nhất 5 kí tự.";
-        verifyTextPresent(errMsg,true);
+        verifyTextPresent(errMsg,true, 5);
     }
 
     public void checkWrongData() {
         String errMsg= "Số điện thoại hoặc mật khẩu không đúng, vui lòng đăng nhập lại.";
-        verifyTextPresent(errMsg, true);
+        verifyTextPresent(errMsg, true, 5);
     }
 }
 

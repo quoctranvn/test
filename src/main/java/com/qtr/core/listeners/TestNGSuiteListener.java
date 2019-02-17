@@ -10,12 +10,9 @@ public class TestNGSuiteListener implements ISuiteListener {
     Logger log = LoggerFactory.instance().createClassLogger(getClass());
 
     @Override
-    public void onStart(ISuite iSuite) {
-        log.info("\n------ START TEST SUITE: " + iSuite.getName());
-    }
+    public void onStart(ISuite iSuite) { log.info("\n----- START SUITE: " + iSuite.getName()); }
 
     @Override
-    public void onFinish(ISuite iSuite) {
-        log.info("\n------ END TEST SUITE: " + iSuite.getName());
+    public void onFinish(ISuite iSuite) { log.info("\n----- END SUITE: " + iSuite.getName());
     }
 }

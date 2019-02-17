@@ -23,13 +23,11 @@ public class ConfigDriver {
         this.maximize = Boolean.valueOf(prop.getProperty("maximize"));
         this.width = Integer.valueOf(prop.getProperty("width"));
         this.height = Integer.valueOf(prop.getProperty("height"));
-        this.implicitlyWait = Integer.valueOf(prop.getProperty("implicitlyWait"));
         this.pageLoadTimeout = Integer.valueOf(prop.getProperty("pageLoadTimeout"));
         this.scriptTimeout = Integer.valueOf(prop.getProperty("scriptTimeout"));
     }
 
     protected void manage(final WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(implicitlyWait, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(scriptTimeout, TimeUnit.SECONDS);
         driver.manage().window().setPosition(new Point(0, 0));
