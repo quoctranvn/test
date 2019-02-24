@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TS_Debug">
-    <test name="Login">
-        <parameter name="browserName" value="chrome"/>
+    <test name="Debug" parallel="classes" thread-count="2">
         <classes>
-            <class name="UI.Login.Login_VerifyInvalidWithDataProvider"/>
+            <class name="UI.Debug.debug1"/>
+            <class name="UI.Debug.debug2"/>
         </classes>
     </test>
 </suite>

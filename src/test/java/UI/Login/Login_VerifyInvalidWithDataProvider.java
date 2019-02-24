@@ -9,8 +9,8 @@ import pages.LoginPage;
 
 public class Login_VerifyInvalidWithDataProvider extends BaseTest {
 
-    private LoginPage loginPage;
     private HomePage homePage;
+    private LoginPage loginPage;
 
     @DataProvider(name = "invalidLogin")
     public Object[][] createData() {
@@ -22,7 +22,7 @@ public class Login_VerifyInvalidWithDataProvider extends BaseTest {
         //Setup test data
         excelDataProvider.getExcelFileSheet("TestData.xlsx", "Login");
 
-        //Initiate page classes
+        //Initiate page instances
         homePage = new HomePage();
         loginPage = new LoginPage();
 

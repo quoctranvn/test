@@ -5,13 +5,12 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class Home_VerifyHyperlinkText extends BaseTest {
+
     private HomePage homePage;
 
     private void setup() {
-        //Initiate page classes
-        homePage = new HomePage();
-
         //Go to Home page
+        homePage = new HomePage();
         homePage.openHomePage();
     }
 

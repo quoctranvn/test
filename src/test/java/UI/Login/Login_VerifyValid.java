@@ -10,16 +10,16 @@ public class Login_VerifyValid extends BaseTest {
 
     private HomePage homePage;
     private LoginPage loginPage;
-    private TopHeader header;
+    private TopHeader topHeader;
 
     private void setup() {
         //Setup test data
         excelDataProvider.getExcelFileSheet("TestData.xlsx", "Login");
 
-        //Initiate page classes
-        homePage = new HomePage();
+        //Initiate page instances
         loginPage = new LoginPage();
-        header = new TopHeader();
+        homePage = new HomePage();
+        topHeader = new TopHeader();
 
         //Go to Login page
         homePage.openHomePage();
@@ -40,6 +40,6 @@ public class Login_VerifyValid extends BaseTest {
         loginPage.clickSubmit();
 
         //Verify Profile displays
-        header.verifyClickProfileLinkWhenLogin();
+        topHeader.verifyClickProfileLinkWhenLogin();
     }
 }

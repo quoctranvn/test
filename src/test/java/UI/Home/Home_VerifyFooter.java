@@ -6,11 +6,12 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class Home_VerifyFooter extends BaseTest {
+
     private HomePage homePage;
     private Footer footer;
 
     private void setup() {
-        //Initiate page classes
+        //Initiate page instances
         homePage = new HomePage();
         footer = new Footer();
 

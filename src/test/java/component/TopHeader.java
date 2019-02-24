@@ -1,19 +1,22 @@
 package component;
 
 import com.qtr.core.base.BasePage;
-import com.qtr.core.config.driver.selenium.WebDriverFactory;
+import com.qtr.core.driver.selenium.DriverFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 
-public class TopHeader extends BasePage {
-    private int minWaitTime = 1;
-    private int maxWaitTime = 3;
+import static com.qtr.core.configuration.WaitTime.getMaxWaitTime;
+import static com.qtr.core.configuration.WaitTime.getMinWaitTime;
+import static com.qtr.core.keyword.selenium.ActionKeyword.moveAndClick;
+import static com.qtr.core.keyword.selenium.ElementKeyword.verifyElementVisible;
+import static com.qtr.core.keyword.selenium.PageKeyword.*;
+import static com.qtr.core.keyword.selenium.WaitKeyword.waitForElementStaleness;
+import static com.qtr.core.keyword.selenium.WaitKeyword.waitForElementVisible;
 
-    public TopHeader() {
-        PageFactory.initElements(WebDriverFactory.instance().getWebDriver(), this);
-    }
+public class TopHeader extends BasePage {
+    private int minWaitTime = getMinWaitTime();
+    private int maxWaitTime = getMaxWaitTime();
 
     @FindBy(xpath = "//*[@alt=\"Chợ Tốt\"]")
     private WebElement img_Logo;
@@ -89,7 +92,7 @@ public class TopHeader extends BasePage {
     public void verifyUserCanSelectItemOnTopHeaderWithoutLogin() {
         waitForElementStaleness(img_Logo, minWaitTime);
         waitForElementVisible(img_Logo, minWaitTime);
-        String currentURL = WebDriverFactory.instance().getWebDriver().getCurrentUrl();
+        String currentURL = DriverFactory.instance().getWebDriver().getCurrentUrl();
 
         this.verifyClickSearchAdsWithoutLogin();
         backToPreviousURL(currentURL, maxWaitTime);
@@ -130,7 +133,7 @@ public class TopHeader extends BasePage {
     public void verifyUserCanSelectItemOnTopHeaderWhenLogin() {
         waitForElementStaleness(img_Logo, minWaitTime);
         waitForElementVisible(img_Logo, minWaitTime);
-        String currentURL = WebDriverFactory.instance().getWebDriver().getCurrentUrl();
+        String currentURL = DriverFactory.instance().getWebDriver().getCurrentUrl();
 
         this.verifyClickSearchAdsWhenLogin();
         backToPreviousURL(currentURL, maxWaitTime);
@@ -274,7 +277,7 @@ public class TopHeader extends BasePage {
         new HomePage().verifyLoginNowDisplayed();
     }
 
-    // ***************** For no Logging ************************************
+    // ***************** For Non-Login ************************************
 
     public void verifyClickSearchAdsWithoutLogin() {
         moveAndClick(lnk_SearchAds);
@@ -345,5 +348,4 @@ public class TopHeader extends BasePage {
         moveAndClick(lnk_Help);
         verifyPageTitleContainsText("Trợ giúp", maxWaitTime);
     }
-
 }

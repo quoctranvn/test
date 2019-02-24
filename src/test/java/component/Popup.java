@@ -1,19 +1,16 @@
 package component;
 
 import com.qtr.core.base.BasePage;
-import com.qtr.core.config.driver.selenium.WebDriverFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import static com.qtr.core.configuration.WaitTime.getMaxWaitTime;
+import static com.qtr.core.configuration.WaitTime.getMinWaitTime;
+import static com.qtr.core.keyword.selenium.WaitKeyword.waitForElementVisible;
 
 public class Popup extends BasePage {
-
-    private int minWaitTime = 1;
-    private int maxWaitTime = 3;
-
-    public Popup() {
-        PageFactory.initElements(WebDriverFactory.instance().getWebDriver(), this);
-    }
+    private int minWaitTime = getMinWaitTime();
+    private int maxWaitTime = getMaxWaitTime();
 
     @FindBy(xpath = "//*[@class=\"ab-image-area\"]")
     private WebElement img_PopupAds;

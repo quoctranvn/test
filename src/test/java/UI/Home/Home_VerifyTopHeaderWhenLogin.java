@@ -1,15 +1,18 @@
 package UI.Home;
 
 import base.BaseTest;
+import component.Footer;
 import component.TopHeader;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
 public class Home_VerifyTopHeaderWhenLogin extends BaseTest {
-    private HomePage homePage;
+
     private LoginPage loginPage;
+    private HomePage homePage;
     private TopHeader topHeader;
+    private Footer footer;
 
     private void setup() {
         //Setup test data
@@ -19,10 +22,11 @@ public class Home_VerifyTopHeaderWhenLogin extends BaseTest {
         String validPhone = excelDataProvider.getCellData(3, 0);
         String validPassword = excelDataProvider.getCellData(3, 1);
 
-        //Initiate page classes
-        homePage = new HomePage();
+        //Initiate page instances
         loginPage = new LoginPage();
+        homePage = new HomePage();
         topHeader = new TopHeader();
+        footer = new Footer();
 
         //Go to Login page
         homePage.openHomePage();

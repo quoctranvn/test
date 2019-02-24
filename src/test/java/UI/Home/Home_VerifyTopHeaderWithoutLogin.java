@@ -6,11 +6,12 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class Home_VerifyTopHeaderWithoutLogin extends BaseTest {
+
     private HomePage homePage;
     private TopHeader topHeader;
 
     private void setup() {
-        //Initiate page classes
+        //Initiate page instances
         homePage = new HomePage();
         topHeader = new TopHeader();
 

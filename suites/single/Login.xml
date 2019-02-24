@@ -2,10 +2,11 @@
 
 <suite name="TS_Login">
     <parameter name="browserName" value="chrome"/>
-    <test name="Login">
+    <test name="Login" parallel="false">
         <classes>
             <class name="UI.Login.Login_VerifyValid" />
             <class name="UI.Login.Login_VerifyInvalid" />
+            <class name="UI.Login.Login_VerifyInvalidWithDataProvider"/>
         </classes>
     </test>
 </suite>

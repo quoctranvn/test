@@ -1,23 +1,24 @@
 package pages;
 
 import com.qtr.core.base.BasePage;
-import com.qtr.core.config.driver.selenium.WebDriverFactory;
 import component.MainHeader;
 import component.Popup;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+import static com.qtr.core.configuration.WaitTime.getMaxWaitTime;
+import static com.qtr.core.configuration.WaitTime.getMinWaitTime;
+import static com.qtr.core.keyword.selenium.ActionKeyword.*;
+import static com.qtr.core.keyword.selenium.ElementKeyword.verifyElementVisible;
+import static com.qtr.core.keyword.selenium.PageKeyword.*;
+import static com.qtr.core.keyword.selenium.WaitKeyword.waitForElementPresent;
+
 public class HomePage extends BasePage {
 
-    private int minWaitTime = 1;
-    private int maxWaitTime = 3;
-
-    public HomePage() {
-        PageFactory.initElements(WebDriverFactory.instance().getWebDriver(), this);
-    }
+    private int minWaitTime = getMinWaitTime();
+    private int maxWaitTime = getMaxWaitTime();
 
     private final String homePageURL = "https://www.chotot.com/";
 
@@ -43,7 +44,7 @@ public class HomePage extends BasePage {
     private WebElement btn_SeeMore;
 
     public void openHomePage() {
-        this.openURL(homePageURL);
+        openURL(homePageURL);
     }
 
     public void clickLoginNow() {
@@ -51,7 +52,7 @@ public class HomePage extends BasePage {
         moveAndClickJS(btn_LoginNow);
     }
 
-    public void verifyLoginNowDisplayed() {verifyElementVisible(btn_LoginNow, maxWaitTime);}
+    public void verifyLoginNowDisplayed() {verifyElementVisible(btn_LoginNow, maxWaitTime * 3);}
 
     public void clickRegister() { moveAndClick(btn_Register); }
 
@@ -78,6 +79,7 @@ public class HomePage extends BasePage {
     }
 
     public void verifyUserCanSelectCategory() {
+        waitForElementPresent(lst_Category.get(0), maxWaitTime);
         String categoryName;
         for(int i = 0; i < lst_Category.size(); i++) {
             // Get category name

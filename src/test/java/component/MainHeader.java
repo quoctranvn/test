@@ -1,6 +1,7 @@
 package component;
 
-import com.qtr.core.config.driver.selenium.WebDriverFactory;
+import com.qtr.core.base.BasePage;
+import com.qtr.core.driver.selenium.DriverFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,17 +9,16 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static com.qtr.core.base.BasePage.*;
-import static com.qtr.core.utils.StringHelper.removeAccent;
+import static com.qtr.core.configuration.WaitTime.getMaxWaitTime;
+import static com.qtr.core.configuration.WaitTime.getMinWaitTime;
+import static com.qtr.core.helper.StringHelper.removeAccent;
+import static com.qtr.core.keyword.selenium.ActionKeyword.getListText;
+import static com.qtr.core.keyword.selenium.ActionKeyword.getText;
+import static com.qtr.core.keyword.selenium.WaitKeyword.waitForElementVisible;
 
-public class MainHeader {
-
-    private int minWaitTime = 1;
-    private int maxWaitTime = 3;
-
-    public MainHeader() {
-        PageFactory.initElements(WebDriverFactory.instance().getWebDriver(), this);
-    }
+public class MainHeader extends BasePage {
+    private int minWaitTime = getMinWaitTime();
+    private int maxWaitTime = getMaxWaitTime();
 
     @FindBy(xpath = "//ol[@itemscope]//li[a or span]")
     private List<WebElement> lst_Breadcrumb;

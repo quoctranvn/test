@@ -1,16 +1,14 @@
 package pages;
 
 import com.qtr.core.base.BasePage;
-import com.qtr.core.config.driver.selenium.WebDriverFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import static com.qtr.core.configuration.WaitTime.getMaxWaitTime;
+import static com.qtr.core.keyword.selenium.ActionKeyword.setText;
+import static com.qtr.core.keyword.selenium.ElementKeyword.verifyTextPresent;
 
 public class LoginPage extends BasePage {
-
-    public LoginPage() {
-        PageFactory.initElements(WebDriverFactory.instance().getWebDriver(), this);
-    }
 
     @FindBy(xpath = "//*[@class=\"form-title\" and text()=\"ĐĂNG NHẬP\"]")
     private WebElement lbl_Login;
@@ -54,12 +52,12 @@ public class LoginPage extends BasePage {
 
     public void checkInvalidData() {
         String errMsg= "Phone: Số điện thoại không hợp lệ. Password: Mật khẩu phải có ít nhất 5 kí tự.";
-        verifyTextPresent(errMsg,true, 5);
+        verifyTextPresent(errMsg,true, getMaxWaitTime());
     }
 
     public void checkWrongData() {
         String errMsg= "Số điện thoại hoặc mật khẩu không đúng, vui lòng đăng nhập lại.";
-        verifyTextPresent(errMsg, true, 5);
+        verifyTextPresent(errMsg, true, getMaxWaitTime());
     }
 }
 
