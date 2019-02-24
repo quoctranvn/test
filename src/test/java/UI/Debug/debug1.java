@@ -14,7 +14,7 @@ public class debug1 extends BaseTest {
         try {
             Assert.assertTrue(false);
         } catch (AssertionError err) {
-            exceptionHandler(err, FailureHandling.CONTINUE_ON_FAILURE);
+            exceptionHandler(err, FailureHandling.WARNING);
         }
     }
 }

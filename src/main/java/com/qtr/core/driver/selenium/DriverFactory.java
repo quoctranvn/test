@@ -54,13 +54,11 @@ public class DriverFactory {
 
     public WebDriver getWebDriver() {
         if (driverStorage.size() == 0) {
-            log.info("*****No existing thread id\n");
+            log.info("***** No existing thread id *****\n");
             return null;
         }
-
         if (driverStorage.containsKey(Thread.currentThread().getId()))
             return driverStorage.get(Thread.currentThread().getId());
-
         return driverStorage.getValue(0);
     }
 
@@ -91,4 +89,3 @@ public class DriverFactory {
         }
     }
 }
-

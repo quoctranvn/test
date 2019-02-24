@@ -11,22 +11,16 @@ public class TestListener implements ITestListener {
     Logger log = Log4jFactory.instance().createClassLogger(getClass());
 
     @Override
-    public void onTestStart(ITestResult iTestResult) {
-        System.out.print("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!3\n");
-        System.out.print(Thread.currentThread().getId());
-    }
+    public void onTestStart(ITestResult iTestResult) { }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         int countFailed = Log4jFactory.instance().getFailedStorage(Thread.currentThread().getId());
-        System.out.print("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!4\n");
-        System.out.print(countFailed);
-        if(countFailed > 0)
-            log.info("\n----- TEST PASSED: " + iTestResult.getName());
-        else {
+        if(countFailed > 0) {
             iTestResult.setStatus(ITestResult.FAILURE);
             log.error("\n----- TEST FAILED: " + iTestResult.getName());
-        }
+        } else
+            log.info("\n----- TEST PASSED: " + iTestResult.getName());
     }
 
     @Override
