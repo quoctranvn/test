@@ -10,7 +10,3 @@ This automation framework is created using Java + Selenium Web Driver + TestNG
 
 # Using
 - TestNG
-- POM + PageFactory pattern
-- Test data from Excel
-- Automatically get the latest version of web-driver
-- Run parallel
